@@ -1,14 +1,20 @@
 """Gymnax environments."""
 
-from gymnax.environments import bsuite, classic_control, environment, minatar, misc
+from gymnax.environments import classic_control, environment, minatar, misc
 
-Catch = bsuite.Catch
-DeepSea = bsuite.DeepSea
-DiscountingChain = bsuite.DiscountingChain
-MemoryChain = bsuite.MemoryChain
-MNISTBandit = bsuite.MNISTBandit
-SimpleBandit = bsuite.SimpleBandit
-UmbrellaChain = bsuite.UmbrellaChain
+try:
+    from gymnax.environments import bsuite
+except Exception:
+    bsuite = None
+
+if bsuite is not None:
+    Catch = bsuite.Catch
+    DeepSea = bsuite.DeepSea
+    DiscountingChain = bsuite.DiscountingChain
+    MemoryChain = bsuite.MemoryChain
+    MNISTBandit = bsuite.MNISTBandit
+    SimpleBandit = bsuite.SimpleBandit
+    UmbrellaChain = bsuite.UmbrellaChain
 Acrobot = classic_control.Acrobot
 CartPole = classic_control.CartPole
 ContinuousMountainCar = classic_control.ContinuousMountainCar
@@ -39,13 +45,6 @@ __all__ = [
     "MountainCar",
     "ContinuousMountainCar",
     "Acrobot",
-    "Catch",
-    "DeepSea",
-    "DiscountingChain",
-    "MemoryChain",
-    "UmbrellaChain",
-    "MNISTBandit",
-    "SimpleBandit",
     "MinAsterix",
     "MinBreakout",
     "MinFreeway",
@@ -59,3 +58,14 @@ __all__ = [
     "Swimmer",
     "Pong",
 ]
+
+if bsuite is not None:
+    __all__ += [
+        "Catch",
+        "DeepSea",
+        "DiscountingChain",
+        "MemoryChain",
+        "UmbrellaChain",
+        "MNISTBandit",
+        "SimpleBandit",
+    ]
